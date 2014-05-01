@@ -1,7 +1,7 @@
 <?php
 if ((isset($_POST['pseudo']) && !empty($_POST['pseudo'])) && (isset($_POST['mdp']) && !empty($_POST['mdp'])) && (isset($_POST['confirmmdp']) && !empty($_POST['confirmmdp'])) && (isset($_POST['mail']) && !empty($_POST['mail'])) ) {
 if ($_POST['mdp'] != $_POST['confirmmdp']) {
-    echo 'Les deux mot de passe sont différents !'
+    echo 'Les deux mot de passe sont diffï¿½rents !';
 }
 else {
     $base = mysql_connect ('mysql.hostinger.fr', 'u195323036_memb', 'zqbiqq');
@@ -11,13 +11,13 @@ $pseudo = safe($_POST['pseudo']);
 $mdp = safe(md5($_POST['mdp']));
 $email = safe($_POST['email']);
 
-//*vérifie si le login n'existe pas
+// VÃ©rfication du logine
 $sql = 'SELECT count(*) FROM membre WHERE login="'.$pseudo.'"';
 $req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());
 $data = mysql_fetch_array($req);
 
 if ($data[0] == 0) {
-    $sql = 'INSERT INTO membre VALUES("", "'.$pseudo.'", "'.$mdp.'", "'.$email'")';
+    $sql = 'INSERT INTO membre VALUES("", "'.$pseudo.'", "'.$mdp.'", "'.$email.'")';
   mysql_query($sql) or die('Erreur SQL !'.$sql.'<br />'.mysql_error());
   session_start();
   $_SESSION['login'] = $pseudo;
@@ -25,7 +25,7 @@ if ($data[0] == 0) {
   exit();
   }
   else {
-  echo 'Un membre possède déjà ce login.';
+  echo 'Un membre possÃ¨de dÃ©jÃ  ce login.';
   }
  }
  }
@@ -44,12 +44,6 @@ if ($data[0] == 0) {
 	<title>Connexion</title>
 </head>
 <body>
-
-<center>
-	<h1>
-	Connecté
-	</h1>
-</center>
 
 </body>
 </html>
