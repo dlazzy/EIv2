@@ -1,7 +1,10 @@
 <?php
 if ((isset($_POST['pseudo']) && !empty($_POST['pseudo'])) && (isset($_POST['mdp']) && !empty($_POST['mdp'])) && (isset($_POST['confirmmdp']) && !empty($_POST['confirmmdp'])) && (isset($_POST['mail']) && !empty($_POST['mail'])) ) {
+function safe($value){ 
+   return mysql_real_escape_string($value); 
+}
 if ($_POST['mdp'] != $_POST['confirmmdp']) {
-    echo 'Les deux mot de passe sont diff�rents !';
+    echo 'Les deux mot de passe sont différents !';
 }
 else {
     $base = mysql_connect ('mysql.hostinger.fr', 'u195323036_memb', 'zqbiqq');
