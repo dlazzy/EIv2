@@ -1,9 +1,9 @@
 <?php
 session_start();
-if (!isset($_SESSION['login'])) {
- header ('Location: connexion.php');
- exit();
-}
+session_unset();
+session_destroy();
+header('Location: index.php');
+exit();
 ?>
 <html>
 <head>
@@ -12,15 +12,14 @@ if (!isset($_SESSION['login'])) {
 	<meta name="viewport" content="width=1024, user-scalable=no">
 	<link rel='stylesheet' type='text/css' href='../style/style.css' />
 	<meta name="viewport" content="initial-scale=1.0">
-	<title>Connexion</title>
+	<title>Déconnexion</title>
 </head>
 <body>
 
 <center>
 	<h1>
-	Connecté
+	Déconnexion en cours
 	</h1>
-	<a class="button" href='deconnexion.php'>Déconnexion</a>
 </center>
 
 </body>

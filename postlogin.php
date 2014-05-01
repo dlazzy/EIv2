@@ -7,7 +7,7 @@ function safe($value){
    return mysql_real_escape_string($value); 
 }
 $pseudo = safe($_POST['pseudo']);
-$mdp = safe($_POST['mdp']);
+$mdp = safe(md5($_POST['mdp']));
 
 $sql = 'SELECT count(*) FROM membre WHERE login="'.$pseudo.'" AND pass="'.$mdp.'"';
 $req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());
@@ -27,7 +27,7 @@ elseif ($data[0] == 0) {
     header ('Location: connexion.php');
 }
 else {
-    echo 'ProblÃ¨me dans la base de donnÃ©es : plusieurs membres ont les mÃªmes identifiants de connexion.';
+    echo 'Problème dans la base de données : plusieurs membres ont les mêmes identifiants de connexion.';
     }
 }
 else {
