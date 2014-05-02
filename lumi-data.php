@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 ?>
 <?php
 
-    $URL = 'http://88.219.157.105:8080/';
+    $URL = 'http://monadresse/';
 
     $lumi = file_get_contents($URL, FILE_USE_INCLUDE_PATH);
 
