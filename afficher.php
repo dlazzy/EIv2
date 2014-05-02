@@ -7,6 +7,13 @@ if (!isset($_SESSION['login'])) {
 else{
 $base = mysql_connect ('mysql.hostinger.fr', 'u195323036_memb', 'zqbiqq');
 mysql_select_db ('u195323036_mb', $base);
+if($_SERVER['REQUEST_METHOD'] == 'POST')
+{
+   $nom = $_POST['lampe'];
+   $sql1 = 'DELETE FROM lampe WHERE nom="'.$nom.'"';
+   $req1 = mysql_query($sql1) or die('Erreur SQL !<br />'.$sql1.'<br />'.mysql_error());
+   echo '<h2>La lampe '.$nom.' à bien était supprimé !';
+}
 }
 ?>
 <html>
@@ -37,7 +44,12 @@ while ($data = mysql_fetch_array($req)) {
  <tr>
  <td>'.$data['nom'].'</td>
  <td>
-	<button type="button" id="lightOn_'.$data['nom'].'" onclick="var iframe = document.getElementById(\'iframe_'.$data['nom'].'\'); iframe.src = \'http://'.$data['ip'].'/?'.$data['numall'].'\'; document.getElementById(\'lightOff_'.$data['nom'].'\').disabled=false; document.getElementById(\'lightOn_'.$data['nom'].'\').disabled=true;">ON</button><button type="button" id="lightOff_'.$data['nom'].'" onclick="var iframe = document.getElementById(\'iframe_'.$data['nom'].'\'); iframe.src = \'http://'.$data['ip'].'/?'.$data['numete'].'\'; document.getElementById(\'lightOn_'.$data['nom'].'\').disabled=false; document.getElementById(\'lightOff_'.$data['nom'].'\').disabled=true;">OFF</button>
+	<button type="button" id="lightOn_'.$data['nom'].'" onclick="var iframe = document.getElementById(\'iframe_'.$data['nom'].'\'); iframe.src = \'http://'.$data['ip'].'/?'.$data['numall'].'\'; document.getElementById(\'lightOff_'.$data['nom'].'\').disabled=false; document.getElementById(\'lightOn_'.$data['nom'].'\').disabled=true;">ON</button>
+	<button type="button" id="lightOff_'.$data['nom'].'" onclick="var iframe = document.getElementById(\'iframe_'.$data['nom'].'\'); iframe.src = \'http://'.$data['ip'].'/?'.$data['numete'].'\'; document.getElementById(\'lightOn_'.$data['nom'].'\').disabled=false; document.getElementById(\'lightOff_'.$data['nom'].'\').disabled=true;">OFF</button>
+	<form method="POST">
+		<input type="hidden" name="lampe" value="'.$data['nom'].'">
+		<button type="submit">Supprimer la lampe</button>
+	</form>
  </td>
  </tr>
 </tbody></table>
