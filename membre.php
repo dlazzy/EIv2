@@ -21,7 +21,7 @@ if (!isset($_SESSION['login'])) {
 <div id="box1">
 <center>
 	<?php
-
+		echo '<center><h1>Vous êtes connecté en tant que '.$_SESSION['login'].'</h1></center>';
 	?>
 	<br />
 	<br />
